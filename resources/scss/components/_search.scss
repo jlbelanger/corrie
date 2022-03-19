@@ -1,0 +1,82 @@
+#search {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - #{$section-margin-mobile * 2});
+	justify-content: center;
+	margin: $section-margin-mobile 0;
+	transition: height $transition-duration ease-in-out;
+
+	&.shrink {
+		height: $search-height-mobile;
+	}
+
+	@media screen and (min-width: $breakpoint) {
+		height: calc(100vh - #{$section-margin-desktop * 2});
+		margin: $section-margin-desktop 0;
+
+		&.shrink {
+			height: $search-height-desktop;
+		}
+	}
+}
+
+.search-field {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	line-height: 1;
+	margin: $margin auto 0;
+	max-width: $input-width;
+	width: 100%;
+
+	@media screen and (min-width: $breakpoint) {
+		align-items: center;
+		flex-direction: row;
+		max-width: #{$input-width + $label-padding};
+	}
+}
+
+.search-label {
+	cursor: pointer;
+	padding-bottom: 8px;
+	white-space: nowrap;
+
+	@media screen and (min-width: $breakpoint) {
+		direction: rtl;
+		float: left;
+		padding-bottom: 0;
+		text-align: right;
+		width: 0;
+	}
+}
+
+#search-button-container {
+	margin: $margin auto 0;
+	max-width: $input-width;
+	width: 100%;
+
+	@media screen and (min-width: $breakpoint) {
+		max-width: $input-width;
+	}
+}
+
+button {
+	background: $green;
+	border-color: $dark-green $dark-green $darker-green;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px 1px 5px;
+	color: $white;
+	cursor: pointer;
+	display: block;
+	line-height: 1;
+	padding: 12px 16px;
+	width: 100%;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background: scale-color($green, $lightness: -10%);
+		border-color: scale-color($dark-green, $lightness: -10%) scale-color($dark-green, $lightness: -10%) scale-color($darker-green, $lightness: -10%);
+	}
+}

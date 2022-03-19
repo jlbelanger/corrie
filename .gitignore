@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.eslintcache
+.phpunit.result.cache
+*.log
+/vendor
+node_modules
+public/uploads
+TODO.md
