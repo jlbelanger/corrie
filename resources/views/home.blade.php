@@ -3,8 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="description" content="Find connections between characters on Coronation Street.">
+		<meta name="keywords" content="coronation street, corrie, family, relationships">
+		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta property="og:title" content="Corrieography">
 		<meta property="og:image" content="{{ url('/assets/img/share.jpg') }}">
+		<meta property="og:description" content="Find connections between characters on Coronation Street.">
 		<title>Corrieography</title>
 		<link rel="icon" href="{{ url('/favicon.svg') }}">
 		<link rel="stylesheet" href="{{ url('/assets/css/style.min.css?20220319') }}">
