@@ -15,7 +15,7 @@ class Handler extends ExceptionHandler
 	 * @var array<int, class-string<Throwable>>
 	 */
 	protected $dontReport = [
-		\Jlbelanger\LaravelJsonApi\Exceptions\JsonApiException::class,
+		\Jlbelanger\Tapioca\Exceptions\JsonApiException::class,
 	];
 
 	/**
@@ -41,7 +41,7 @@ class Handler extends ExceptionHandler
 			return response()->json(['errors' => [['title' => 'URL does not exist.', 'status' => '404', 'detail' => 'Method not allowed.']]], 404);
 		});
 
-		$this->renderable(function (\Jlbelanger\LaravelJsonApi\Exceptions\JsonApiException $e) {
+		$this->renderable(function (\Jlbelanger\Tapioca\Exceptions\JsonApiException $e) {
 			return response()->json(['errors' => $e->getErrors()], $e->getCode());
 		});
 

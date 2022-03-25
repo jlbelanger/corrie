@@ -2,20 +2,28 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Jlbelanger\Tapioca\Exceptions\NotFoundException;
 
 class Authenticate extends Middleware
 {
 	/**
-	 * Get the path the user should be redirected to when they are not authenticated.
+	 * Handles an incoming request.
 	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @return string|null
+	 * @param  Request     $request
+	 * @param  Closure     $next
+	 * @param  string|null $guard
+	 * @return mixed
 	 */
-	protected function redirectTo($request) // phpcs:ignore Squiz.Commenting.FunctionComment.TypeHintMissing
+	public function handle(Request $request, Closure $next, $guard = null)
 	{
-		if (!$request->expectsJson()) {
-			return route('login');
+		if (!Auth::guard($guard)->check()) {
+			throw NotFoundException::generate();
 		}
+
+		return $next($request);
 	}
 }

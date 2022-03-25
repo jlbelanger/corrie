@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Jlbelanger\LaravelJsonApi\Controllers\ResourceController;
+use Jlbelanger\Tapioca\Controllers\ResourceController;
 
 class UserController extends ResourceController
 {
