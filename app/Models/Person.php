@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Validation\Rule;
 use Jlbelanger\Tapioca\Traits\Resource;
 
 class Person extends Model
 {
-	use HasFactory, Resource;
+	use HasFactory, Resource, SoftDeletes;
 
 	protected $fillable = [
 		'first_name',
