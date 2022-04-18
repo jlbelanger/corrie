@@ -5,13 +5,15 @@ namespace App\Providers;
 use App\Http\Kernel;
 use App\Models\Person;
 use App\Observers\PersonObserver;
+use DB;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\ServiceProvider;
+use Log;
 
 class AppServiceProvider extends ServiceProvider
 {
 	/**
-	 * Register any application services.
+	 * Registers any application services.
 	 *
 	 * @return void
 	 */
@@ -20,13 +22,19 @@ class AppServiceProvider extends ServiceProvider
 	}
 
 	/**
-	 * Bootstrap any application services.
+	 * Bootstraps any application services.
 	 *
 	 * @param  Kernel $kernel
 	 * @return void
 	 */
 	public function boot(Kernel $kernel)
 	{
+		if (env('LOG_DATABASE_QUERIES') === '1') {
+			DB::listen(function ($query) {
+				Log::info($query->sql, $query->bindings, $query->time);
+			});
+		}
+
 		if ($this->app->environment() !== 'local') {
 			$kernel->appendMiddlewareToGroup('api', \Illuminate\Routing\Middleware\ThrottleRequests::class);
 		}

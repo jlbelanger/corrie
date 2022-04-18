@@ -17,10 +17,10 @@ class RouteServiceProvider extends ServiceProvider
 	 *
 	 * @var string
 	 */
-	public const HOME = '/home';
+	public const HOME = '/';
 
 	/**
-	 * Define your route model bindings, pattern filters, etc.
+	 * Defines your route model bindings, pattern filters, etc.
 	 *
 	 * @return void
 	 */
@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
 	}
 
 	/**
-	 * Configure the rate limiters for the application.
+	 * Configures the rate limiters for the application.
 	 *
 	 * @return void
 	 */

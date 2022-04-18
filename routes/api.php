@@ -8,18 +8,18 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['api', 'guest']], function () {
-	Route::post('/auth/login', '\App\Http\Controllers\Api\AuthController@login');
-	Route::post('/auth/forgot-password', '\App\Http\Controllers\Api\AuthController@forgotPassword');
-	Route::put('/auth/reset-password/{token}', '\App\Http\Controllers\Api\AuthController@resetPassword');
+	Route::post('/auth/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+	Route::post('/auth/forgot-password', [\App\Http\Controllers\Api\AuthController::class, 'forgotPassword']);
+	Route::put('/auth/reset-password/{token}', [\App\Http\Controllers\Api\AuthController::class, 'resetPassword']);
 });
 
 Route::group(['middleware' => ['api', 'auth:sanctum']], function () {
-	Route::delete('/auth/logout', '\App\Http\Controllers\Api\AuthController@logout');
+	Route::delete('/auth/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 
 	Route::apiResources([
-		'people' => '\App\Http\Controllers\Api\PersonController',
-		'relationships' => '\App\Http\Controllers\Api\RelationshipController',
-		'users' => '\App\Http\Controllers\Api\UserController',
+		'people' => \App\Http\Controllers\Api\PersonController::class,
+		'relationships' => \App\Http\Controllers\Api\RelationshipController::class,
+		'users' => \App\Http\Controllers\Api\UserController::class,
 	]);
 });
 
