@@ -245,11 +245,13 @@ class Person extends Model
 	/**
 	 * @param  string $key
 	 * @param  string $filename
+	 * @param  array  $data
 	 * @return string
 	 */
-	public function uploadedFilename(string $key, string $filename) : string // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
+	public function uploadedFilename(string $key, string $filename, array $data = []) : string // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
 	{
+		$slug = !empty($data) ? $data['attributes']['slug'] : $this->slug;
 		$pathInfo = pathinfo($filename);
-		return '/uploads/person/' . $this->slug . '.' . $pathInfo['extension'];
+		return '/uploads/person/' . $slug . '.' . $pathInfo['extension'];
 	}
 }
