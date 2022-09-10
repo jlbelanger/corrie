@@ -13,7 +13,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 		<link rel="icon" href="/favicon.ico">
-		<link rel="stylesheet" href="/assets/css/style.min.css?20220319">
+		<link rel="stylesheet" href="/assets/css/style.min.css?20220909">
 	</head>
 	<body>
 		<main id="container">
@@ -48,6 +48,10 @@
 				<ol id="results-list"></ol>
 				<div id="spinner" role="alert">Looking for a connection...</div>
 			</article>
+
+			<footer>
+				<a href="https://github.com/jlbelanger/corrie" id="github">GitHub</a>
+			</footer>
 		</main>
 		<script>
 		window.people = {!! json_encode($people) !!};

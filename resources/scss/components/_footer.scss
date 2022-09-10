@@ -1,0 +1,17 @@
+#github {
+	bottom: 0;
+	color: $light-green;
+	display: inline-block;
+	font-size: 16px;
+	height: 44px;
+	line-height: 44px;
+	padding: 0 16px;
+	position: fixed;
+	right: 0;
+
+	&:hover,
+	&:active,
+	&:focus {
+		text-decoration: none;
+	}
+}
