@@ -252,6 +252,10 @@ class Person extends Model
 	{
 		$slug = !empty($data['attributes']['slug']) ? $data['attributes']['slug'] : $this->slug;
 		$pathInfo = pathinfo($filename);
-		return '/uploads/person/' . $slug . '.' . $pathInfo['extension'];
+		$extension = strtolower($pathInfo['extension']);
+		if ($extension === 'jpeg') {
+			$extension = 'jpg';
+		}
+		return '/uploads/person/' . $slug . '.' . $extension;
 	}
 }
