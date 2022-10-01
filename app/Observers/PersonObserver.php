@@ -18,11 +18,15 @@ class PersonObserver
 
 		// Rename files to match new slug.
 		if ($person->filename) {
-			$newFilename = $person->uploadedFilename('filename', $person->filename);
-			$oldFilename = preg_replace('/\/' . $person->slug . '\./', '/' . $person->getOriginal('slug') . '.', $newFilename);
+			$oldFilename = $person->filename;
+			$newFilename = $person->uploadedFilename('filename', $oldFilename);
 			$oldPath = public_path($oldFilename);
 			$newPath = public_path($newFilename);
 			if (file_exists($oldPath) && !file_exists($newPath)) {
+				$folder = preg_replace('/\/[^\/]+$/', '', $newPath);
+				if (!is_dir($folder)) {
+					mkdir($folder);
+				}
 				rename($oldPath, $newPath);
 				$person->filename = $newFilename;
 			}
