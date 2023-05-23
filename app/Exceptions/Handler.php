@@ -3,9 +3,10 @@
 namespace App\Exceptions;
 
 use App\Exceptions\NotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use Jlbelanger\Tapioca\Exceptions\JsonApiException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -15,7 +16,8 @@ class Handler extends ExceptionHandler
 	 * @var array<int, class-string<Throwable>>
 	 */
 	protected $dontReport = [
-		\Jlbelanger\Tapioca\Exceptions\JsonApiException::class,
+		JsonApiException::class,
+		NotFoundException::class,
 	];
 
 	/**
@@ -27,6 +29,8 @@ class Handler extends ExceptionHandler
 		'current_password',
 		'password',
 		'password_confirmation',
+		'new_password',
+		'new_password_confirmation',
 	];
 
 	/**
@@ -37,11 +41,11 @@ class Handler extends ExceptionHandler
 	public function register()
 	{
 		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
-		$this->renderable(function (\Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $e) {
+		$this->renderable(function (MethodNotAllowedHttpException $e) {
 			return response()->json(['errors' => [['title' => 'URL does not exist.', 'status' => '404', 'detail' => 'Method not allowed.']]], 404);
 		});
 
-		$this->renderable(function (\Jlbelanger\Tapioca\Exceptions\JsonApiException $e) {
+		$this->renderable(function (JsonApiException $e) {
 			return response()->json(['errors' => $e->getErrors()], $e->getCode());
 		});
 
