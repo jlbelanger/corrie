@@ -29,10 +29,12 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot(Kernel $kernel)
 	{
-		if (env('LOG_DATABASE_QUERIES') === '1') {
-			DB::listen(function ($query) {
-				Log::info($query->sql, $query->bindings, $query->time);
-			});
+		if (config('app.debug')) {
+			if (config('logging.database')) {
+				DB::listen(function ($query) {
+					Log::info($query->sql, $query->bindings, $query->time);
+				});
+			}
 		}
 
 		if ($this->app->environment() !== 'local') {
@@ -41,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 
 		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
 		ResetPassword::createUrlUsing(function ($notifiable, string $token) {
-			return env('ADMIN_URL') . '/reset-password/' . $token;
+			return config('app.admin_url') . '/reset-password/' . $token;
 		});
 
 		Person::observe(PersonObserver::class);
