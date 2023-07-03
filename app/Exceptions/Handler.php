@@ -87,7 +87,9 @@ class Handler extends ExceptionHandler
 				}
 				return response()->json(['errors' => [$error]], $code);
 			}
-			return response()->view('errors.500', [], $code);
+			if (!config('app.debug')) {
+				return response()->view('errors.500', [], $code);
+			}
 		});
 	}
 }
