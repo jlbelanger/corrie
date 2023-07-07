@@ -25,7 +25,7 @@ body {
 }
 
 :focus {
-	box-shadow: 0 0 0 $focus-width $light-green;
+	box-shadow: $focus;
 	outline: none !important; // stylelint-disable-line declaration-no-important
 }
 
