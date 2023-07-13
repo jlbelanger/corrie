@@ -50,14 +50,18 @@
 }
 
 .result-image {
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	border-radius: 1000px;
-	height: 0;
+	align-items: center;
+	display: flex;
+	height: 168px;
+	justify-content: center;
 	margin-bottom: 8px;
-	padding-bottom: 100%;
-	width: 100%;
+	width: 168px;
+}
+
+.result-img {
+	border-radius: 1000px;
+	height: 100%;
+	object-fit: cover;
 }
 
 .dead {

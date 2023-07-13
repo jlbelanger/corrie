@@ -14,10 +14,14 @@ function showResults(response) {
 		const li = document.createElement('li');
 		li.setAttribute('class', 'result-item');
 
-		const image = document.createElement('div');
-		image.setAttribute('class', `result-image ${response.path[i].status}`);
-		image.style.backgroundImage = response.path[i].image ? `url("${response.path[i].image}")` : 'url("/assets/img/user.png")';
-		li.appendChild(image);
+		const div = document.createElement('div');
+		div.setAttribute('class', 'result-image');
+		li.appendChild(div);
+
+		const image = document.createElement('img');
+		image.setAttribute('class', `result-img ${response.path[i].status}`);
+		image.setAttribute('src', response.path[i].image ? response.path[i].image : '/assets/img/user.png');
+		div.appendChild(image);
 
 		const name = document.createElement('div');
 		name.setAttribute('class', 'result-name');
