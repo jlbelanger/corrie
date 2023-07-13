@@ -62,7 +62,7 @@
 			<article id="results">
 				<div aria-live="polite" id="results-message" role="region"></div>
 				<ol id="results-list"></ol>
-				<div id="spinner" role="alert">Looking for a connection...</div>
+				<div id="spinner" role="status">Looking for a connection...</div>
 			</article>
 
 			<footer>

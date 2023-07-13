@@ -52,10 +52,10 @@ export default class Autocomplete {
 
 		// Add close button.
 		this.elements.close = document.createElement('button');
+		this.elements.close.setAttribute('aria-label', 'Close');
 		this.elements.close.setAttribute('class', 'select-close');
 		this.elements.close.setAttribute('data-id', this.id);
 		this.elements.close.setAttribute('type', 'button');
-		this.elements.close.innerText = 'Close';
 		this.elements.close.addEventListener('click', Autocomplete.onClickClose);
 		if (this.currentLabel) {
 			this.showClose();
