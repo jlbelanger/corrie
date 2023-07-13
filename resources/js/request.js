@@ -1,4 +1,4 @@
-function request(url, callback) { // eslint-disable-line no-unused-vars
+export default (url, callback) => {
 	const req = new XMLHttpRequest();
 	req.onreadystatechange = () => {
 		if (req.readyState === XMLHttpRequest.DONE) {
@@ -8,4 +8,4 @@ function request(url, callback) { // eslint-disable-line no-unused-vars
 	req.open('GET', url, true);
 	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 	req.send(null);
-}
+};

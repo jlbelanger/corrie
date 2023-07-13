@@ -1,3 +1,7 @@
+import Autocomplete from './autocomplete';
+import onSubmit from './submit';
+import showResults from './results';
+
 Autocomplete.get({
 	container: document.getElementById('p1-container'),
 	id: 'p1',
@@ -19,3 +23,11 @@ document.body.addEventListener('keydown', (e) => {
 		Autocomplete.closeAll();
 	}
 });
+
+if (window.response) {
+	document.getElementById('search').classList.add('shrink');
+	document.getElementById('results').classList.add('show');
+	showResults(window.response);
+}
+
+document.getElementById('form').addEventListener('submit', onSubmit);

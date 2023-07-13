@@ -1,4 +1,4 @@
-function showResults(response) {
+export default (response) => {
 	document.getElementById('results').classList.add('show');
 
 	// Set message.
@@ -35,10 +35,4 @@ function showResults(response) {
 		resultsMessage.classList.add('show');
 		resultsList.classList.add('show');
 	}, 300);
-}
-
-if (window.response) {
-	document.getElementById('search').classList.add('shrink');
-	document.getElementById('results').classList.add('show');
-	showResults(window.response);
-}
+};

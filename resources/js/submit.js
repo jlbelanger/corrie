@@ -1,4 +1,8 @@
-document.getElementById('form').addEventListener('submit', (e) => {
+import { hideSpinner, showSpinner } from './spinner';
+import request from './request';
+import showResults from './results';
+
+export default (e) => {
 	e.preventDefault();
 
 	document.getElementById('search').classList.add('shrink');
@@ -34,4 +38,4 @@ document.getElementById('form').addEventListener('submit', (e) => {
 			}, transitionDuration);
 		});
 	}, transitionDuration);
-});
+};

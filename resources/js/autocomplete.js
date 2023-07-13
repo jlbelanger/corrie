@@ -1,4 +1,4 @@
-class Autocomplete { // eslint-disable-line no-unused-vars
+export default class Autocomplete {
 	constructor({ container, id, options, selected }) {
 		this.elements = {
 			container,
