@@ -6,9 +6,10 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 require('dotenv').config();
 
-const config = {
+module.exports = {
+	devtool: false,
 	entry: {
-		functions: './resources/js/initialize.js',
+		functions: './resources/js/main.js',
 		style: './resources/scss/style.scss',
 	},
 	output: {
@@ -26,6 +27,15 @@ const config = {
 				return f;
 			},
 			fileName: 'mix-manifest.json',
+		}),
+		new BrowserSyncPlugin({
+			proxy: process.env.APP_URL,
+			files: [
+				'public/assets/js/*.js',
+				'public/assets/css/*.css',
+			],
+		}, {
+			reload: false,
 		}),
 	],
 	module: {
@@ -69,20 +79,3 @@ const config = {
 		],
 	},
 };
-
-module.exports = (env, argv) => ({
-	...config,
-	plugins: [
-		...config.plugins,
-		new BrowserSyncPlugin({
-			proxy: process.env.APP_URL,
-			files: [
-				'public/assets/js/*.js',
-				'public/assets/css/*.css',
-			],
-		}, {
-			reload: false,
-		}),
-	],
-	devtool: argv.mode === 'production' ? false : 'eval',
-});
