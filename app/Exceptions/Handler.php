@@ -73,9 +73,8 @@ class Handler extends ExceptionHandler
 		});
 
 		$this->renderable(function (Throwable $e) {
-			$code = $e->getCode() ? $e->getCode() : 500;
 			if (request()->expectsJson()) {
-				$error = ['title' => 'There was an error connecting to the server.', 'status' => (string) $code];
+				$error = ['title' => 'There was an error connecting to the server.', 'status' => '500'];
 				if (config('app.debug')) {
 					$error['detail'] = $e->getMessage();
 					$error['meta'] = [
@@ -85,10 +84,10 @@ class Handler extends ExceptionHandler
 						'trace' => $e->getTrace(),
 					];
 				}
-				return response()->json(['errors' => [$error]], $code);
+				return response()->json(['errors' => [$error]], 500);
 			}
 			if (!config('app.debug')) {
-				return response()->view('errors.500', [], $code);
+				return response()->view('errors.500', [], 500);
 			}
 		});
 	}
