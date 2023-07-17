@@ -10,7 +10,7 @@
 		height: $search-height-mobile;
 	}
 
-	@media screen and (min-width: $breakpoint) {
+	@media (min-width: $breakpoint) {
 		height: calc(100vh - #{$section-margin-desktop * 2});
 		margin: $section-margin-desktop 0;
 
@@ -29,7 +29,7 @@
 	max-width: $input-width;
 	width: 100%;
 
-	@media screen and (min-width: $breakpoint) {
+	@media (min-width: $breakpoint) {
 		align-items: center;
 		flex-direction: row;
 		max-width: #{$input-width + $label-padding};
@@ -41,7 +41,7 @@
 	padding-bottom: 8px;
 	white-space: nowrap;
 
-	@media screen and (min-width: $breakpoint) {
+	@media (min-width: $breakpoint) {
 		direction: rtl;
 		float: left;
 		padding-bottom: 0;
@@ -55,7 +55,7 @@
 	max-width: $input-width;
 	width: 100%;
 
-	@media screen and (min-width: $breakpoint) {
+	@media (min-width: $breakpoint) {
 		max-width: $input-width;
 	}
 }

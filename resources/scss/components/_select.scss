@@ -96,7 +96,7 @@ $select-icon-color: #666;
 		display: block;
 	}
 
-	@media screen and (min-width: $breakpoint) {
+	@media (min-width: $breakpoint) {
 		max-height: #{($select-height + 1px) * 6.5};
 	}
 }
