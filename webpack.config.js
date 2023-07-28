@@ -7,10 +7,10 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 require('dotenv').config();
 
 module.exports = {
+	mode: 'production',
 	devtool: false,
 	entry: {
 		functions: './resources/js/main.js',
-		style: './resources/scss/style.scss',
 	},
 	output: {
 		filename: 'assets/js/[name].min.js?[contenthash]',
@@ -30,10 +30,21 @@ module.exports = {
 		}),
 		new BrowserSyncPlugin({
 			proxy: process.env.APP_URL,
+			port: 3000,
 			files: [
-				'public/assets/js/*.js',
-				'public/assets/css/*.css',
+				'public/assets/js/**/*',
+				'public/assets/css/**/*',
+				'resources/views/**/*',
 			],
+			snippetOptions: {
+				rule: {
+					match: /<body[^>]*>/i,
+					fn: (snippet, match) => (
+						// Allow Browsersync to work with Content-Security-Policy without script-src 'unsafe-inline'.
+						`${match}${snippet.replace('id=', 'nonce="browser-sync" id=')}`
+					),
+				},
+			},
 		}, {
 			reload: false,
 		}),
@@ -77,5 +88,15 @@ module.exports = {
 				extractComments: false,
 			}),
 		],
+		splitChunks: {
+			cacheGroups: {
+				style: {
+					name: 'style',
+					type: 'css/mini-extract',
+					chunks: 'all',
+					enforce: true,
+				},
+			},
+		},
 	},
 };

@@ -44,7 +44,7 @@ Copy `/public/uploads` from the live site.
 ### Run
 
 ``` bash
-yarn watch
+yarn start
 ```
 
 ### Lint

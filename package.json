@@ -19,7 +19,7 @@
 		"lint:js": "node_modules/.bin/eslint . --ext .js",
 		"lint:php": "./vendor/bin/phpcs",
 		"test:php": "./vendor/bin/phpunit",
-		"watch": "npx browserslist@latest --update-db && node_modules/.bin/webpack --watch --mode=production"
+		"start": "npx browserslist@latest --update-db && node_modules/.bin/webpack --watch"
 	},
 	"dependencies": {
 		"normalize.css": "^8.0.1"
