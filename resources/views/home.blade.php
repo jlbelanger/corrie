@@ -46,11 +46,13 @@
 					<div class="search-field">
 						<label class="search-label" for="p1">How is</label>
 						<div id="p1-container"></div>
+						<input id="p1-value" name="p1" type="hidden" value="{{ $p1 }}">
 					</div>
 
 					<div class="search-field">
 						<label class="search-label" for="p2">related to</label>
 						<div id="p2-container"></div>
+						<input id="p2-value" name="p2" type="hidden" value="{{ $p2 }}">
 					</div>
 
 					<p id="search-button-container">
@@ -69,12 +71,8 @@
 				<a href="https://github.com/jlbelanger/corrie" id="github">GitHub</a>
 			</footer>
 		</main>
-		<script>
-		window.people = {!! json_encode($people) !!};
-		window.response = {!! json_encode($response) !!};
-		window.selectedP1 = {!! json_encode($p1) !!};
-		window.selectedP2 = {!! json_encode($p2) !!};
-		</script>
+		<input data-people type="hidden" value="{{ json_encode($people) }}">
+		<input data-response type="hidden" value="{{ json_encode($response) }}">
 		<script src="{{ mix('/assets/js/functions.min.js') }}"></script>
 	</body>
 </html>
