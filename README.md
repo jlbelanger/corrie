@@ -47,6 +47,8 @@ Copy `/public/uploads` from the live site.
 yarn start
 ```
 
+Your browser should automatically open https://localhost:3000/
+
 ### Lint
 
 ``` bash
