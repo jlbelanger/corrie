@@ -1,3 +1,5 @@
+// Colors
+
 $green: #526831;
 $lighter-green: scale-color($green, $lightness: 40%);
 $light-green: scale-color($green, $lightness: 30%);
@@ -7,6 +9,8 @@ $darkest-green: scale-color($green, $lightness: -35%);
 $white: #fff;
 $black: #000;
 
+// Sizes
+
 $body-padding: 16px;
 
 $focus-color: $light-green;
@@ -14,13 +18,20 @@ $focus-width: 4px;
 $focus: 0 0 0 $focus-width $focus-color;
 
 $input-width: 490px;
+
 $label-padding: 12px;
 $label-width: 110px; // Approximate.
+
 $margin: 24px;
+
 $section-margin-mobile: 20px;
 $section-margin-desktop: 40px;
+
 $search-height-mobile: 330px;
 $search-height-desktop: 280px;
+
 $transition-duration: 300ms;
+
+// Breakpoints
 
 $breakpoint: ($body-padding * 2) + ($label-padding * 2) + ($label-width * 2) + $input-width;
