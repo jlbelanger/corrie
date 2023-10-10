@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Person;
+use Illuminate\Support\Carbon;
 
 class PersonObserver
 {
@@ -66,7 +67,7 @@ class PersonObserver
 		}
 
 		// Rename slug to allow new rows to be created with same slug.
-		$person->slug = 'deleted-' . strtotime('now') . '-' . $person->slug;
+		$person->slug = 'deleted-' . Carbon::now() . '-' . $person->slug;
 		$person->filename = null;
 		$person->save();
 	}

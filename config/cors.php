@@ -19,7 +19,7 @@ return [
 
 	'allowed_methods' => ['OPTIONS', 'GET', 'PUT', 'POST', 'DELETE'],
 
-	'allowed_origins' => [env('APP_URL'), env('ADMIN_URL')],
+	'allowed_origins' => [env('APP_URL'), preg_replace('/^(https?:\/\/.+)\/.+$/', '$1', env('ADMIN_URL'))],
 
 	'allowed_origins_patterns' => [],
 

@@ -46,7 +46,7 @@ class UserTest extends TestCase
 						'attributes' => [
 							'email' => 'bar@example.com',
 							'username' => 'bar',
-							'password' => 'example',
+							'password' => '12345678',
 						],
 					],
 				],
