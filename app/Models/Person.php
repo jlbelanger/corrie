@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Validation\Rule;
 use Jlbelanger\Tapioca\Traits\Resource;
 
 class Person extends Model
@@ -215,31 +214,21 @@ class Person extends Model
 	}
 
 	/**
-	 * @param  array  $data
-	 * @param  string $method
 	 * @return array
 	 */
-	protected function rules(array $data, string $method) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+	public function rules() : array
 	{
-		$rules = [
-			'attributes.first_name' => ['filled', 'max:255'],
-			'attributes.last_name' => ['filled', 'max:255'],
-			'attributes.slug' => ['filled', 'max:255'],
-			'attributes.gender' => ['in:M,F'],
-			'attributes.birthdate' => ['regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
-			'attributes.deathdate' => ['regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
-			'attributes.is_current' => ['boolean'],
-			'attributes.num_appearances' => ['integer'],
-			'attributes.appearances_date' => ['regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
+		return [
+			'data.attributes.first_name' => [$this->requiredOnCreate(), 'max:255'],
+			'data.attributes.last_name' => [$this->requiredOnCreate(), 'max:255'],
+			'data.attributes.slug' => [$this->requiredOnCreate(), 'max:255', $this->unique('slug')],
+			'data.attributes.gender' => ['in:M,F'],
+			'data.attributes.birthdate' => ['regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
+			'data.attributes.deathdate' => ['regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
+			'data.attributes.is_current' => ['boolean'],
+			'data.attributes.num_appearances' => ['integer'],
+			'data.attributes.appearances_date' => ['regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
 		];
-
-		$unique = Rule::unique($this->getTable(), 'slug');
-		if ($this->id) {
-			$unique->ignore($this->id);
-		}
-		$rules['attributes.slug'][] = $unique;
-
-		return $rules;
 	}
 
 	/**

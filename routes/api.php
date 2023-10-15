@@ -14,6 +14,8 @@ Route::group(['middleware' => ['api', 'guest', 'throttle:' . config('auth.thrott
 
 Route::group(['middleware' => ['api', 'auth:sanctum']], function () {
 	Route::delete('/auth/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
+	Route::put('/auth/change-email', [\App\Http\Controllers\Api\AuthController::class, 'changeEmail']);
+	Route::put('/auth/change-password', [\App\Http\Controllers\Api\AuthController::class, 'changePassword']);
 
 	Route::apiResources([
 		'people' => \App\Http\Controllers\Api\PersonController::class,

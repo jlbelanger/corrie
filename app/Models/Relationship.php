@@ -86,20 +86,18 @@ class Relationship extends Model
 	}
 
 	/**
-	 * @param  array  $data
-	 * @param  string $method
 	 * @return array
 	 */
-	protected function rules(array $data, string $method) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+	public function rules() : array
 	{
 		return [
-			'attributes.person_1_id' => ['filled'],
-			'attributes.person_2_id' => ['filled'],
-			'attributes.relationship' => ['filled', 'max:255'],
-			'attributes.start_date' => ['nullable', 'regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
-			'attributes.end_date' => ['nullable', 'regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
-			'attributes.end_reason' => ['nullable', 'max:255'],
-			'attributes.take_last_name' => ['boolean'],
+			'data.relationships.person_1' => [$this->requiredOnCreate()],
+			'data.relationships.person_2' => [$this->requiredOnCreate()],
+			'data.attributes.relationship' => [$this->requiredOnCreate(), 'max:255'],
+			'data.attributes.start_date' => ['nullable', 'regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
+			'data.attributes.end_date' => ['nullable', 'regex:/^\d{4}(-\d{2})?(-\d{2})?$/'],
+			'data.attributes.end_reason' => ['nullable', 'max:255'],
+			'data.attributes.take_last_name' => ['boolean'],
 		];
 	}
 

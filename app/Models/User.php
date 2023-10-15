@@ -39,33 +39,19 @@ class User extends Authenticatable
 	}
 
 	/**
-	 * @param  array  $data
-	 * @param  string $method
 	 * @return array
 	 */
-	protected function rules(array $data, string $method) : array // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
+	public function rules() : array
 	{
-		$required = $method === 'POST' ? 'required' : 'filled';
 		$rules = [
-			'attributes.username' => [$required, 'alpha_num', 'max:255'],
-			'attributes.email' => [$required, 'email', 'max:255'],
-			'attributes.password' => ['prohibited'],
+			'data.attributes.username' => [$this->requiredOnCreate(), 'alpha_num', 'max:255', $this->unique('username')],
+			'data.attributes.email' => [$this->requiredOnCreate(), 'email', 'max:255', $this->unique('email')],
 		];
 
-		$unique = Rule::unique($this->getTable(), 'username');
-		if ($this->id) {
-			$unique->ignore($this->id);
-		}
-		$rules['attributes.username'][] = $unique;
-
-		$unique = Rule::unique($this->getTable(), 'email');
-		if ($this->id) {
-			$unique->ignore($this->id);
-		}
-		$rules['attributes.email'][] = $unique;
-
-		if ($method === 'POST') {
-			$rules['attributes.password'] = [$required, Rules\Password::defaults()];
+		if ($this->getKey()) {
+			$rules['data.attributes.password'] = ['prohibited'];
+		} else {
+			$rules['data.attributes.password'] = [$this->requiredOnCreate(), Rules\Password::defaults()];
 		}
 
 		return $rules;

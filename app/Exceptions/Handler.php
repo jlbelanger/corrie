@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Routing\Exceptions\InvalidSignatureException;
+use Illuminate\Validation\ValidationException;
 use Jlbelanger\Tapioca\Exceptions\JsonApiException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -37,7 +38,7 @@ class Handler extends ExceptionHandler
 	 *
 	 * @return void
 	 */
-	public function register()
+	public function register() // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
 	{
 		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 		$this->renderable(function (InvalidSignatureException $e) {
@@ -59,7 +60,7 @@ class Handler extends ExceptionHandler
 
 		$this->renderable(function (NotFoundHttpException $e) {
 			if (request()->expectsJson()) {
-				return response()->json(['errors' => [['title' => $e->getMessage() ?? 'URL does not exist.', 'status' => '404']]], 404);
+				return response()->json(['errors' => [['title' => $e->getMessage() ? $e->getMessage() : 'URL does not exist.', 'status' => '404']]], 404);
 			}
 			return response()->view('errors.404', [], 404);
 		});
@@ -67,6 +68,25 @@ class Handler extends ExceptionHandler
 		$this->renderable(function (ThrottleRequestsException $e) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 			if (request()->expectsJson()) {
 				return response()->json(['errors' => [['title' => 'Please wait before retrying.', 'status' => '429']]], 429);
+			}
+		});
+
+		$this->renderable(function (ValidationException $e) {
+			if (request()->expectsJson()) {
+				$output = [];
+				$errors = $e->validator->errors()->toArray();
+				foreach ($errors as $pointer => $titles) {
+					foreach ($titles as $title) {
+						$output[] = [
+							'title' => $title,
+							'source' => [
+								'pointer' => '/' . str_replace('.', '/', $pointer),
+							],
+							'status' => '422',
+						];
+					}
+				}
+				return response()->json(['errors' => $output], 422);
 			}
 		});
 
