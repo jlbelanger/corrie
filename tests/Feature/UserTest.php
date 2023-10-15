@@ -102,7 +102,7 @@ class UserTest extends TestCase
 	 */
 	public function testShow(array $args) : void
 	{
-		$args['response'] = $this->replaceToken('%id%', $this->user->id, $args['response']);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->user->id, $args['response']);
 		$response = $this->actingAs($this->user)->json('GET', $this->path . '/' . $this->user->id);
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
@@ -142,8 +142,8 @@ class UserTest extends TestCase
 	 */
 	public function testUpdate(array $args) : void
 	{
-		$args['body'] = $this->replaceToken('%id%', $this->user->id, $args['body']);
-		$args['response'] = $this->replaceToken('%id%', $this->user->id, $args['response']);
+		$args['body'] = $this->replaceToken('%id%', (string) $this->user->id, $args['body']);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->user->id, $args['response']);
 		$response = $this->actingAs($this->user)->json('PUT', $this->path . '/' . $this->user->id, $args['body']);
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
@@ -161,7 +161,7 @@ class UserTest extends TestCase
 	/**
 	 * @dataProvider destroyProvider
 	 */
-	public function testDestroy($args)
+	public function testDestroy(array $args) : void
 	{
 		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->user->id);
 		if (!empty($args['response'])) {

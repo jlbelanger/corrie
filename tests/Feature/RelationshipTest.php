@@ -108,10 +108,10 @@ class RelationshipTest extends TestCase
 		$this->travelTo(new \Carbon\Carbon('2001-02-03 04:05:06'));
 		$person1 = \App\Models\Person::factory()->create(['slug' => 'kevin-webster', 'first_name' => 'Kevin', 'last_name' => 'Webster']);
 		$person2 = \App\Models\Person::factory()->create(['slug' => 'sally-seddon', 'first_name' => 'Sally', 'last_name' => 'Seddon']);
-		$args['body'] = $this->replaceToken('%person_1_id%', $person1->id, $args['body']);
-		$args['body'] = $this->replaceToken('%person_2_id%', $person2->id, $args['body']);
-		$args['response'] = $this->replaceToken('%person_1_id%', $person1->id, $args['response']);
-		$args['response'] = $this->replaceToken('%person_2_id%', $person2->id, $args['response']);
+		$args['body'] = $this->replaceToken('%person_1_id%', (string) $person1->id, $args['body']);
+		$args['body'] = $this->replaceToken('%person_2_id%', (string) $person2->id, $args['body']);
+		$args['response'] = $this->replaceToken('%person_1_id%', (string) $person1->id, $args['response']);
+		$args['response'] = $this->replaceToken('%person_2_id%', (string) $person2->id, $args['response']);
 
 		$response = $this->actingAs($this->user)->json('POST', $this->path, $args['body']);
 		if (!empty($response['data']['id'])) {
@@ -151,9 +151,9 @@ class RelationshipTest extends TestCase
 	 */
 	public function testShow(array $args) : void
 	{
-		$args['response'] = $this->replaceToken('%id%', $this->relationship->id, $args['response']);
-		$args['response'] = $this->replaceToken('%person_1_id%', $this->relationship->person_1_id, $args['response']);
-		$args['response'] = $this->replaceToken('%person_2_id%', $this->relationship->person_2_id, $args['response']);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->relationship->id, $args['response']);
+		$args['response'] = $this->replaceToken('%person_1_id%', (string) $this->relationship->person_1_id, $args['response']);
+		$args['response'] = $this->replaceToken('%person_2_id%', (string) $this->relationship->person_2_id, $args['response']);
 		$response = $this->actingAs($this->user)->json('GET', $this->path . '/' . $this->relationship->id);
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
@@ -217,12 +217,12 @@ class RelationshipTest extends TestCase
 	{
 		$person1 = \App\Models\Person::factory()->create(['slug' => 'kevin-webster', 'first_name' => 'Kevin', 'last_name' => 'Webster']);
 		$person2 = \App\Models\Person::factory()->create(['slug' => 'sally-seddon', 'first_name' => 'Sally', 'last_name' => 'Seddon']);
-		$args['body'] = $this->replaceToken('%id%', $this->relationship->id, $args['body']);
-		$args['body'] = $this->replaceToken('%person_1_id%', $person1->id, $args['body']);
-		$args['body'] = $this->replaceToken('%person_2_id%', $person2->id, $args['body']);
-		$args['response'] = $this->replaceToken('%id%', $this->relationship->id, $args['response']);
-		$args['response'] = $this->replaceToken('%person_1_id%', $person1->id, $args['response']);
-		$args['response'] = $this->replaceToken('%person_2_id%', $person2->id, $args['response']);
+		$args['body'] = $this->replaceToken('%id%', (string) $this->relationship->id, $args['body']);
+		$args['body'] = $this->replaceToken('%person_1_id%', (string) $person1->id, $args['body']);
+		$args['body'] = $this->replaceToken('%person_2_id%', (string) $person2->id, $args['body']);
+		$args['response'] = $this->replaceToken('%id%', (string) $this->relationship->id, $args['response']);
+		$args['response'] = $this->replaceToken('%person_1_id%', (string) $person1->id, $args['response']);
+		$args['response'] = $this->replaceToken('%person_2_id%', (string) $person2->id, $args['response']);
 		$response = $this->actingAs($this->user)->json('PUT', $this->path . '/' . $this->relationship->id, $args['body']);
 		$response->assertExactJson($args['response']);
 		$response->assertStatus($args['code']);
@@ -240,7 +240,7 @@ class RelationshipTest extends TestCase
 	/**
 	 * @dataProvider destroyProvider
 	 */
-	public function testDestroy($args)
+	public function testDestroy(array $args) : void
 	{
 		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->relationship->id);
 		if (!empty($args['response'])) {
