@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Jlbelanger\Tapioca\Traits\Resource;
 
 class Person extends Model
@@ -139,7 +140,7 @@ class Person extends Model
 		}
 
 		if (!empty($fullSiblingsIds)) {
-			return self::whereIn('id', $fullSiblingsIds)
+			return self::whereIn('id', Arr::flatten($fullSiblingsIds))
 				->orderBy('birthdate', 'ASC');
 		}
 
