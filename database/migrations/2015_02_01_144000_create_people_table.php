@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeopleTable extends Migration
+return new class extends Migration
 {
 	/**
 	 * Runs the migrations.
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up() : void
 	{
 		Schema::create('people', function (Blueprint $table) {
 			$table->id();
@@ -35,8 +35,8 @@ class CreatePeopleTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down() : void
 	{
 		Schema::dropIfExists('people');
 	}
-}
+};

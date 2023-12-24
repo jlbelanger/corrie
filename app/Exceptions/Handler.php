@@ -21,7 +21,7 @@ class Handler extends ExceptionHandler
 	protected $dontReport = [JsonApiException::class];
 
 	/**
-	 * A list of the inputs that are never flashed for validation exceptions.
+	 * The list of the inputs that are never flashed to the session on validation exceptions.
 	 *
 	 * @var array<int, string>
 	 */
@@ -38,9 +38,10 @@ class Handler extends ExceptionHandler
 	 *
 	 * @return void
 	 */
-	public function register() // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
+	// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
+	public function register() : void
 	{
-		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
+		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 		$this->renderable(function (InvalidSignatureException $e) {
 			if (request()->expectsJson()) {
 				if (!url()->signatureHasNotExpired(request())) {
@@ -50,7 +51,7 @@ class Handler extends ExceptionHandler
 			}
 		});
 
-		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
+		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 		$this->renderable(function (MethodNotAllowedHttpException $e) {
 			if (request()->expectsJson()) {
 				return response()->json(['errors' => [['title' => 'URL does not exist.', 'status' => '404', 'detail' => 'Method not allowed.']]], 404);
@@ -65,7 +66,7 @@ class Handler extends ExceptionHandler
 			return response()->view('errors.404', [], 404);
 		});
 
-		$this->renderable(function (ThrottleRequestsException $e) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
+		$this->renderable(function (ThrottleRequestsException $e) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 			if (request()->expectsJson()) {
 				return response()->json(['errors' => [['title' => 'Please wait before retrying.', 'status' => '429']]], 429);
 			}

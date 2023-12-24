@@ -1,13 +1,10 @@
 #spinner {
 	align-items: center;
-	bottom: 0;
 	display: flex;
+	inset: 0;
 	justify-content: center;
-	left: 0;
 	pointer-events: none;
 	position: absolute;
-	right: 0;
-	top: 0;
 
 	&::before {
 		animation: spin 1s infinite linear;

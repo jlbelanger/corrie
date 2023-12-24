@@ -36,7 +36,7 @@ class UserTest extends TestCase
 		$response->assertStatus(200);
 	}
 
-	public function storeProvider() : array
+	public static function storeProvider() : array
 	{
 		return [
 			[[
@@ -78,7 +78,7 @@ class UserTest extends TestCase
 		$response->assertStatus($args['code']);
 	}
 
-	public function showProvider() : array
+	public static function showProvider() : array
 	{
 		return [
 			[[
@@ -108,7 +108,7 @@ class UserTest extends TestCase
 		$response->assertStatus($args['code']);
 	}
 
-	public function updateProvider() : array
+	public static function updateProvider() : array
 	{
 		return [
 			[[
@@ -149,7 +149,7 @@ class UserTest extends TestCase
 		$response->assertStatus($args['code']);
 	}
 
-	public function destroyProvider() : array
+	public static function destroyProvider() : array
 	{
 		return [
 			[[
