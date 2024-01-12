@@ -1,5 +1,4 @@
 import { hideSpinner, showSpinner } from './spinner';
-import request from './request';
 import showResults from './results';
 
 export default (e) => {
@@ -29,13 +28,37 @@ export default (e) => {
 	setTimeout(() => {
 		resultsMessage.innerText = '';
 		resultsList.innerText = '';
+
+		const options = {
+			headers: {
+				Accept: 'application/json',
+				'X-Requested-With': 'XMLHttpRequest',
+			},
+		};
+
 		const $spinner = showSpinner();
-		request(`/search${query}`, (response) => {
-			hideSpinner($spinner);
-			setTimeout(() => {
-				response = JSON.parse(response);
-				showResults(response);
-			}, transitionDuration);
-		});
+
+		fetch(`/search${query}`, options)
+			.then((response) => {
+				hideSpinner($spinner);
+				return response;
+			})
+			.then((response) => {
+				if (!response.ok) {
+					const message = `${response.status} ${response.statusText}`;
+					showResults({ message: `Error: ${message}`, path: [] });
+					throw new Error(message);
+				}
+				return response;
+			})
+			.then((response) => response.json())
+			.then((response) => {
+				if (!response) {
+					return;
+				}
+				setTimeout(() => {
+					showResults(response);
+				}, transitionDuration);
+			});
 	}, transitionDuration);
 };
