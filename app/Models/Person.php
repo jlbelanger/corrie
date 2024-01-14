@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Jlbelanger\Tapioca\Traits\Resource;
@@ -212,6 +213,30 @@ class Person extends Model
 			];
 		}
 		return $output;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function multiRelationships() : array
+	{
+		return ['relationships_as_person_1', 'relationships_as_person_2'];
+	}
+
+	/**
+	 * @return HasMany
+	 */
+	public function relationshipsAsPerson1() : HasMany
+	{
+		return $this->hasMany(Relationship::class, 'person_1_id');
+	}
+
+	/**
+	 * @return HasMany
+	 */
+	public function relationshipsAsPerson2() : HasMany
+	{
+		return $this->hasMany(Relationship::class, 'person_2_id');
 	}
 
 	/**
