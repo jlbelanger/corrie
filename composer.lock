@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "609652f5585e7f6bc874ed03abe08afd",
+    "content-hash": "094ca56b49c5cf73d2d29572ffed4cbf",
     "packages": [
         {
             "name": "brick/math",
@@ -1047,11 +1047,17 @@
         },
         {
             "name": "jlbelanger/tapioca",
-            "version": "1.0.0",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jlbelanger/tapioca.git",
+                "reference": "39ccb63e70662b1c32701082443c1c3505cff702"
+            },
             "dist": {
-                "type": "path",
-                "url": "../tapioca",
-                "reference": "aebf9bee56b1abc32ec5f1848b2e87815ddc298d"
+                "type": "zip",
+                "url": "https://api.github.com/repos/jlbelanger/tapioca/zipball/39ccb63e70662b1c32701082443c1c3505cff702",
+                "reference": "39ccb63e70662b1c32701082443c1c3505cff702",
+                "shasum": ""
             },
             "require": {
                 "php": "^8.2"
@@ -1061,6 +1067,7 @@
                 "phpunit/phpunit": "^10.5.2",
                 "squizlabs/php_codesniffer": "^3.8.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1090,10 +1097,11 @@
                 }
             ],
             "description": "Laravel package for JSON:API.",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/jlbelanger/tapioca/tree/main",
+                "issues": "https://github.com/jlbelanger/tapioca/issues"
+            },
+            "time": "2024-02-24T21:46:45+00:00"
         },
         {
             "name": "laravel/framework",
