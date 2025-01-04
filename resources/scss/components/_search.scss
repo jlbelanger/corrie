@@ -1,21 +1,24 @@
+@use 'sass:color';
+@use '../utilities/variables';
+
 #search {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - #{$section-margin-mobile * 2});
+	height: calc(100vh - #{variables.$section-margin-mobile * 2});
 	justify-content: center;
-	margin: $section-margin-mobile 0;
-	transition: height $transition-duration ease-in-out;
+	margin: variables.$section-margin-mobile 0;
+	transition: height variables.$transition-duration ease-in-out;
 
 	&.shrink {
-		height: $search-height-mobile;
+		height: variables.$search-height-mobile;
 	}
 
-	@media (width >= $breakpoint) {
-		height: calc(100vh - #{$section-margin-desktop * 2});
-		margin: $section-margin-desktop 0;
+	@media (width >= variables.$breakpoint) {
+		height: calc(100vh - #{variables.$section-margin-desktop * 2});
+		margin: variables.$section-margin-desktop 0;
 
 		&.shrink {
-			height: $search-height-desktop;
+			height: variables.$search-height-desktop;
 		}
 	}
 }
@@ -25,14 +28,14 @@
 	display: flex;
 	flex-direction: column;
 	line-height: 1;
-	margin: $margin auto 0;
-	max-width: $input-width;
+	margin: variables.$margin auto 0;
+	max-width: variables.$input-width;
 	width: 100%;
 
-	@media (width >= $breakpoint) {
+	@media (width >= variables.$breakpoint) {
 		align-items: center;
 		flex-direction: row;
-		max-width: #{$input-width + $label-padding};
+		max-width: calc(variables.$input-width + variables.$label-padding);
 	}
 }
 
@@ -41,7 +44,7 @@
 	padding-bottom: 8px;
 	white-space: nowrap;
 
-	@media (width >= $breakpoint) {
+	@media (width >= variables.$breakpoint) {
 		direction: rtl;
 		float: left;
 		padding-bottom: 0;
@@ -51,22 +54,22 @@
 }
 
 #search-button-container {
-	margin: $margin auto 0;
-	max-width: $input-width;
+	margin: variables.$margin auto 0;
+	max-width: variables.$input-width;
 	width: 100%;
 
-	@media (width >= $breakpoint) {
-		max-width: $input-width;
+	@media (width >= variables.$breakpoint) {
+		max-width: variables.$input-width;
 	}
 }
 
 button {
-	background: $green;
-	border-color: $dark-green $dark-green $darker-green;
+	background: variables.$green;
+	border-color: variables.$dark-green variables.$dark-green variables.$darker-green;
 	border-radius: 3px;
 	border-style: solid;
 	border-width: 1px 1px 5px;
-	color: $white;
+	color: variables.$white;
 	cursor: pointer;
 	display: block;
 	line-height: 1;
@@ -76,7 +79,10 @@ button {
 	&:hover,
 	&:active,
 	&:focus {
-		background: scale-color($green, $lightness: -10%);
-		border-color: scale-color($dark-green, $lightness: -10%) scale-color($dark-green, $lightness: -10%) scale-color($darker-green, $lightness: -10%);
+		background: color.scale(variables.$green, $lightness: -10%);
+		border-color:
+			color.scale(variables.$dark-green, $lightness: -10%)
+			color.scale(variables.$dark-green, $lightness: -10%)
+			color.scale(variables.$darker-green, $lightness: -10%);
 	}
 }

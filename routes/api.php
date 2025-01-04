@@ -12,7 +12,7 @@ Route::group(['middleware' => ['api', 'guest', 'throttle:auth']], function () {
 	Route::put('/auth/reset-password/{token}', [\App\Http\Controllers\Api\AuthController::class, 'resetPassword'])->middleware('signed:relative')->name('password.update');
 });
 
-Route::group(['middleware' => ['api', 'auth:sanctum']], function () {
+Route::group(['middleware' => ['api', 'auth:sanctum', 'throttle:api']], function () {
 	Route::delete('/auth/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 	Route::put('/auth/change-email', [\App\Http\Controllers\Api\AuthController::class, 'changeEmail']);
 	Route::put('/auth/change-password', [\App\Http\Controllers\Api\AuthController::class, 'changePassword']);

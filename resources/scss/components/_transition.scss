@@ -1,8 +1,10 @@
+@use '../utilities/variables';
+
 #results-message,
 #results-list,
 #spinner {
 	opacity: 0;
-	transition: opacity $transition-duration ease-in-out;
+	transition: opacity variables.$transition-duration ease-in-out;
 
 	&.show {
 		opacity: 1;

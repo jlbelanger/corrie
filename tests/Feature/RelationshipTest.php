@@ -6,6 +6,7 @@ use App\Models\Person;
 use App\Models\Relationship;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class RelationshipTest extends TestCase
@@ -13,6 +14,14 @@ class RelationshipTest extends TestCase
 	use RefreshDatabase;
 
 	protected $path = '/api/relationships';
+
+	protected $person1;
+
+	protected $person2;
+
+	protected $relationship;
+
+	protected $user;
 
 	protected function setUp() : void
 	{
@@ -100,9 +109,7 @@ class RelationshipTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider storeProvider
-	 */
+	#[DataProvider('storeProvider')]
 	public function testStore(array $args) : void
 	{
 		$this->travelTo(new \Carbon\Carbon('2001-02-03 04:05:06'));
@@ -146,9 +153,7 @@ class RelationshipTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider showProvider
-	 */
+	#[DataProvider('showProvider')]
 	public function testShow(array $args) : void
 	{
 		$args['response'] = $this->replaceToken('%id%', (string) $this->relationship->id, $args['response']);
@@ -210,9 +215,7 @@ class RelationshipTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider updateProvider
-	 */
+	#[DataProvider('updateProvider')]
 	public function testUpdate(array $args) : void
 	{
 		$person1 = \App\Models\Person::factory()->create(['slug' => 'kevin-webster', 'first_name' => 'Kevin', 'last_name' => 'Webster']);
@@ -237,9 +240,7 @@ class RelationshipTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider destroyProvider
-	 */
+	#[DataProvider('destroyProvider')]
 	public function testDestroy(array $args) : void
 	{
 		$response = $this->actingAs($this->user)->json('DELETE', $this->path . '/' . $this->relationship->id);

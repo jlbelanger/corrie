@@ -6,11 +6,14 @@ use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class AuthForgotPasswordTest extends TestCase
 {
 	use RefreshDatabase;
+
+	protected $user;
 
 	protected function setUp() : void
 	{
@@ -90,9 +93,7 @@ class AuthForgotPasswordTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider forgotPasswordProvider
-	 */
+	#[DataProvider('forgotPasswordProvider')]
 	public function testForgotPassword(array $args) : void
 	{
 		Notification::fake();

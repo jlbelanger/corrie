@@ -1,3 +1,5 @@
+@use '../utilities/variables';
+
 #spinner {
 	align-items: center;
 	display: flex;
@@ -8,7 +10,7 @@
 
 	&::before {
 		animation: spin 1s infinite linear;
-		border-color: $white $white $white transparent;
+		border-color: variables.$white variables.$white variables.$white transparent;
 		border-radius: 1000px;
 		border-style: solid;
 		border-width: 3px;

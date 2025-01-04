@@ -1,15 +1,17 @@
-// Colors
+@use 'sass:color';
+
+/* Colors. */
 
 $green: #526831;
-$lighter-green: scale-color($green, $lightness: 40%);
-$light-green: scale-color($green, $lightness: 30%);
-$dark-green: scale-color($green, $lightness: -17.5%);
-$darker-green: scale-color($green, $lightness: -20%);
-$darkest-green: scale-color($green, $lightness: -35%);
+$lighter-green: color.scale($green, $lightness: 40%);
+$light-green: color.scale($green, $lightness: 30%);
+$dark-green: color.scale($green, $lightness: -17.5%);
+$darker-green: color.scale($green, $lightness: -20%);
+$darkest-green: color.scale($green, $lightness: -35%);
 $white: #fff;
 $black: #000;
 
-// Sizes
+/* Sizes. */
 
 $body-padding: 16px;
 
@@ -20,7 +22,7 @@ $focus: 0 0 0 $focus-width $focus-color;
 $input-width: 490px;
 
 $label-padding: 12px;
-$label-width: 110px; // Approximate.
+$label-width: 110px; /* Approximate. */
 
 $margin: 24px;
 
@@ -32,6 +34,6 @@ $search-height-desktop: 280px;
 
 $transition-duration: 300ms;
 
-// Breakpoints
+/* Breakpoints. */
 
 $breakpoint: ($body-padding * 2) + ($label-padding * 2) + ($label-width * 2) + $input-width;

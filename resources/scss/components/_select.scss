@@ -1,3 +1,5 @@
+@use '../utilities/variables';
+
 $select-border-color: #ccc;
 $select-border-radius: 3px;
 $select-border-width: 1px;
@@ -7,7 +9,7 @@ $select-icon-color: #666;
 .select {
 	display: inline-block;
 	margin: 0 auto;
-	max-width: $input-width;
+	max-width: variables.$input-width;
 	position: relative;
 	text-align: center;
 	width: 100%;
@@ -59,7 +61,7 @@ $select-icon-color: #666;
 	}
 
 	&::after {
-		content: '\00d7'; // &times;
+		content: '\00d7'; /* &times; */
 		display: block;
 		font-family: sans-serif;
 		font-size: 18px;
@@ -75,15 +77,15 @@ $select-icon-color: #666;
 }
 
 .select-list {
-	background: $white;
-	color: $black;
+	background: variables.$white;
+	color: variables.$black;
 	display: none;
 	left: 0;
 	list-style: none;
 	margin: 0 auto;
 	margin: 0;
-	max-height: #{($select-height + 1px) * 4.5};
-	max-width: $input-width;
+	max-height: calc(($select-height + 1px) * 4.5);
+	max-width: variables.$input-width;
 	overflow: auto;
 	padding: 0;
 	position: absolute;
@@ -96,8 +98,8 @@ $select-icon-color: #666;
 		display: block;
 	}
 
-	@media (width >= $breakpoint) {
-		max-height: #{($select-height + 1px) * 6.5};
+	@media (width >= variables.$breakpoint) {
+		max-height: calc(($select-height + 1px) * 6.5);
 	}
 }
 
@@ -109,7 +111,7 @@ $select-icon-color: #666;
 	background: transparent;
 	border: 0;
 	border-radius: 0;
-	color: $black;
+	color: variables.$black;
 	height: $select-height;
 	overflow: hidden;
 	text-align: left;
@@ -117,17 +119,17 @@ $select-icon-color: #666;
 	white-space: nowrap;
 
 	&.selected {
-		background: $light-green;
+		background: variables.$light-green;
 
 		&:hover,
 		&:active,
 		&:focus {
-			background: $light-green;
+			background: variables.$light-green;
 		}
 	}
 
 	&:focus {
-		box-shadow: inset $focus;
+		box-shadow: inset variables.$focus;
 	}
 
 	&:hover,
