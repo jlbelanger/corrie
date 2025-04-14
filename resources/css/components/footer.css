@@ -1,8 +1,6 @@
-@use '../utilities/variables';
-
 #github {
 	bottom: 0;
-	color: variables.$light-green;
+	color: var(--light-green);
 	display: inline-block;
 	font-size: 16px;
 	height: 44px;

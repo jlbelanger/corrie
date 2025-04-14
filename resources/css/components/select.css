@@ -1,21 +1,13 @@
-@use '../utilities/variables';
-
-$select-border-color: #ccc;
-$select-border-radius: 3px;
-$select-border-width: 1px;
-$select-height: 44px;
-$select-icon-color: #666;
-
 .select {
 	display: inline-block;
 	margin: 0 auto;
-	max-width: variables.$input-width;
+	max-width: var(--input-width);
 	position: relative;
 	text-align: center;
 	width: 100%;
 
 	&::after {
-		border-color: $select-icon-color transparent transparent;
+		border-color: var(--dark-gray) transparent transparent;
 		border-style: solid;
 		border-width: 6px;
 		content: '';
@@ -32,23 +24,23 @@ $select-icon-color: #666;
 
 .select-input {
 	appearance: none;
-	border: $select-border-width solid $select-border-color;
-	border-radius: $select-border-radius;
-	height: $select-height;
+	border: var(--select-border-width) solid var(--light-gray);
+	border-radius: var(--select-border-radius);
+	height: var(--select-height);
 	padding: 8px 40px 8px 12px;
 	width: 100%;
 }
 
 .select-close {
 	background: #fff;
-	border-color: $select-border-color;
-	border-radius: 0 $select-border-radius $select-border-radius 0;
+	border-color: var(--light-gray);
+	border-radius: 0 var(--select-border-radius) var(--select-border-radius) 0;
 	border-style: solid;
-	border-width: $select-border-width $select-border-width $select-border-width 0;
-	color: $select-icon-color;
+	border-width: var(--select-border-width) var(--select-border-width) var(--select-border-width) 0;
+	color: var(--dark-gray);
 	display: none;
 	font-size: 0;
-	height: $select-height;
+	height: var(--select-height);
 	padding: 0;
 	position: absolute;
 	right: 0;
@@ -71,21 +63,21 @@ $select-icon-color: #666;
 	&:active,
 	&:focus {
 		background: #f9f9f9;
-		border-color: $select-border-color;
-		color: $select-icon-color;
+		border-color: var(--light-gray);
+		color: var(--dark-gray);
 	}
 }
 
 .select-list {
-	background: variables.$white;
-	color: variables.$black;
+	background: var(--white);
+	color: var(--black);
 	display: none;
 	left: 0;
 	list-style: none;
 	margin: 0 auto;
 	margin: 0;
-	max-height: calc(($select-height + 1px) * 4.5);
-	max-width: variables.$input-width;
+	max-height: calc((var(--select-height) + 1px) * 4.5);
+	max-width: var(--input-width);
 	overflow: auto;
 	padding: 0;
 	position: absolute;
@@ -98,8 +90,8 @@ $select-icon-color: #666;
 		display: block;
 	}
 
-	@media (width >= variables.$breakpoint) {
-		max-height: calc(($select-height + 1px) * 6.5);
+	@media (--breakpoint) {
+		max-height: calc((var(--select-height) + 1px) * 6.5);
 	}
 }
 
@@ -111,25 +103,25 @@ $select-icon-color: #666;
 	background: transparent;
 	border: 0;
 	border-radius: 0;
-	color: variables.$black;
-	height: $select-height;
+	color: var(--black);
+	height: var(--select-height);
 	overflow: hidden;
 	text-align: left;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 
 	&.selected {
-		background: variables.$light-green;
+		background: var(--light-green);
 
 		&:hover,
 		&:active,
 		&:focus {
-			background: variables.$light-green;
+			background: var(--light-green);
 		}
 	}
 
 	&:focus {
-		box-shadow: inset variables.$focus;
+		box-shadow: inset var(--focus);
 	}
 
 	&:hover,

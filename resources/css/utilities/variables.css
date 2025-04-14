@@ -1,0 +1,29 @@
+:root {
+	/* Colors. */
+	--green: #526831;
+	--light-green: hsl(from var(--green) h s calc(l * 1.7));
+	--dark-green: hsl(from var(--green) h s calc(l * .825));
+	--darker-green: hsl(from var(--green) h s calc(l * .8));
+	--white: #fff;
+	--black: #000;
+	--light-gray: #ccc;
+	--dark-gray: #666;
+
+	/* Sizes. */
+	--body-padding: 16px;
+	--focus-color: var(--light-green);
+	--focus-width: 4px;
+	--focus: 0 0 0 var(--focus-width) var(--focus-color);
+	--input-width: 490px;
+	--label-padding: 12px;
+	--label-width: 110px; /* Approximate. */
+	--margin: 24px;
+	--search-height-desktop: 280px;
+	--search-height-mobile: 330px;
+	--section-margin-desktop: 40px;
+	--section-margin-mobile: 20px;
+	--select-border-radius: 3px;
+	--select-border-width: 1px;
+	--select-height: 44px;
+	--transition-duration: 300ms;
+}

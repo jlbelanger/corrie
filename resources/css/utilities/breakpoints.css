@@ -1,0 +1,1 @@
+@custom-media --breakpoint (width >= calc(var(--body-padding) * 2) + (var(--label-padding) * 2) + (var(--label-width) * 2) + var(--input-width));

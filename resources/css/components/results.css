@@ -1,10 +1,8 @@
-@use '../utilities/variables';
-
 #results {
 	display: none;
 	flex-direction: column;
 	justify-content: center;
-	margin: variables.$section-margin-mobile 0;
+	margin: var(--section-margin-mobile) 0;
 	position: relative;
 
 	&.show {
@@ -12,14 +10,14 @@
 	}
 
 	.shrink + & {
-		min-height: calc(100vh - #{variables.$search-height-mobile + (variables.$section-margin-mobile * 3)});
+		min-height: calc(100vh - (var(--search-height-mobile) + (var(--section-margin-mobile) * 3)));
 	}
 
-	@media (width >= variables.$breakpoint) {
-		margin: variables.$section-margin-desktop 0;
+	@media (--breakpoint) {
+		margin: var(--section-margin-desktop) 0;
 
 		.shrink + & {
-			min-height: calc(100vh - #{variables.$search-height-desktop + (variables.$section-margin-desktop * 3)});
+			min-height: calc(100vh - (var(--search-height-desktop) + (var(--section-margin-desktop) * 3)));
 		}
 	}
 }
@@ -35,18 +33,18 @@
 	font-size: 0;
 	justify-content: center;
 	list-style: none;
-	margin: 0 calc(variables.$body-padding * -1);
+	margin: 0 calc(var(--body-padding) * -1);
 	padding: 0;
 }
 
 .result-item {
 	font-size: 14px;
 	max-width: 200px;
-	padding: variables.$body-padding;
+	padding: var(--body-padding);
 	text-align: center;
 	width: 100%;
 
-	@media (width >= variables.$breakpoint) {
+	@media (--breakpoint) {
 		font-size: 16px;
 	}
 }

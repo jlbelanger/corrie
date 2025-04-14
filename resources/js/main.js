@@ -1,4 +1,4 @@
-import '../scss/style.scss';
+import '../css/style.css';
 import Autocomplete from './autocomplete';
 import onSubmit from './submit';
 import showResults from './results';
