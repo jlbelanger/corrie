@@ -1,13 +1,13 @@
 :root {
 	/* Colors. */
+	--black: #000;
+	--dark-gray: #666;
+	--light-gray: #ccc;
+	--white: #fff;
 	--green: #526831;
 	--light-green: hsl(from var(--green) h s calc(l * 1.7));
 	--dark-green: hsl(from var(--green) h s calc(l * .825));
 	--darker-green: hsl(from var(--green) h s calc(l * .8));
-	--white: #fff;
-	--black: #000;
-	--light-gray: #ccc;
-	--dark-gray: #666;
 
 	/* Sizes. */
 	--body-padding: 16px;

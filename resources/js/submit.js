@@ -1,5 +1,5 @@
-import { hideSpinner, showSpinner } from './spinner';
-import showResults from './results';
+import { hideSpinner, showSpinner } from './spinner.js';
+import showResults from './results.js';
 
 export default (e) => {
 	e.preventDefault();

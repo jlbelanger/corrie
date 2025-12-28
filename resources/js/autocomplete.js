@@ -95,9 +95,9 @@ export default class Autocomplete {
 		// Filter options by current search.
 		this.filteredOptions = this.options;
 		if (search) {
-			search = search.toLowerCase().trim();
+			const cleanSearch = search.toLowerCase().trim();
 			this.filteredOptions = this.filteredOptions.filter(({ label }) => (
-				label.toLowerCase().match(new RegExp(`(^|[^a-z])${search}`))
+				label.toLowerCase().match(new RegExp(`(^|[^a-z])${cleanSearch}`))
 			));
 		}
 
@@ -154,8 +154,7 @@ export default class Autocomplete {
 	}
 
 	setSelectedIndex(i) {
-		i = parseInt(i, 10);
-		this.selectedIndex = i;
+		this.selectedIndex = parseInt(i, 10);
 
 		// Unhighlight currently selected item.
 		const selected = this.elements.list.querySelector('.selected');
@@ -238,15 +237,15 @@ export default class Autocomplete {
 		const input = leaveFocus.querySelector('.select-input');
 		const id = input.getAttribute('id');
 		const a = window.autocomplete[id];
-		if (input.value !== a.elements.hidden.getAttribute('data-value')) {
-			a.clearInput();
-			a.hideList();
-			a.hideClose();
-		} else {
+		if (input.value === a.elements.hidden.getAttribute('data-value')) {
 			a.hideList();
 			if (a.currentLabel === '') {
 				a.hideClose();
 			}
+		} else {
+			a.clearInput();
+			a.hideList();
+			a.hideClose();
 		}
 	}
 

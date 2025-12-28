@@ -1,7 +1,7 @@
 import '../css/style.css';
-import Autocomplete from './autocomplete';
-import onSubmit from './submit';
-import showResults from './results';
+import Autocomplete from './autocomplete.js';
+import onSubmit from './submit.js';
+import showResults from './results.js';
 
 const people = JSON.parse(document.querySelector('[data-people]').value);
 
