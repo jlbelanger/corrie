@@ -8,7 +8,7 @@ View the app at https://corrie.jennybelanger.com/
 
 - [Composer](https://getcomposer.org/)
 - [Git](https://git-scm.com/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Node](https://nodejs.org/)
 - Database
 - Web server with PHP
 
@@ -24,7 +24,7 @@ cp .env.example .env
 
 # Install dependencies
 composer install
-yarn install
+npm install
 
 # Generate key
 php artisan key:generate
@@ -44,7 +44,7 @@ Copy `/public/uploads` from the live site.
 ### Run
 
 ``` bash
-yarn start
+npm start
 ```
 
 Your browser should automatically open https://localhost:3000/
@@ -53,7 +53,7 @@ Your browser should automatically open https://localhost:3000/
 
 ``` bash
 ./vendor/bin/phpcs
-yarn lint
+npm run lint
 ```
 
 ### Test

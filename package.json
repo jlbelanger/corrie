@@ -14,13 +14,13 @@
 		"url": "https://github.com/jlbelanger/corrie.git"
 	},
 	"scripts": {
-		"build": "node_modules/.bin/webpack --mode=production",
-		"lint": "yarn lint:css && yarn lint:js",
-		"lint:css": "node_modules/.bin/stylelint 'resources/css/**/*.css'",
-		"lint:js": "node_modules/.bin/eslint .",
+		"build": "npx webpack --mode=production",
+		"lint": "npm run lint:css && npm run lint:js",
+		"lint:css": "npx stylelint 'resources/css/**/*.css'",
+		"lint:js": "npx eslint .",
 		"lint:php": "./vendor/bin/phpcs",
 		"test:php": "./vendor/bin/phpunit",
-		"start": "node_modules/.bin/update-browserslist-db && node_modules/.bin/webpack --watch"
+		"start": "npx update-browserslist-db && npx webpack --watch"
 	},
 	"dependencies": {
 		"normalize.css": "^8.0.1"
