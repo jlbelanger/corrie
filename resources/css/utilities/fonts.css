@@ -3,5 +3,7 @@
 	font-family: 'Noto Serif';
 	font-style: normal;
 	font-weight: 400;
-	src: url('/assets/fonts/noto-serif/notoserif-regular-webfont.woff2') format('woff2'), url('/assets/fonts/noto-serif/notoserif-regular-webfont.woff') format('woff');
+	src:
+		url('/assets/fonts/noto-serif/notoserif-regular-webfont.woff2') format('woff2'),
+		url('/assets/fonts/noto-serif/notoserif-regular-webfont.woff') format('woff');
 }

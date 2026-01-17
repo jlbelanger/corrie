@@ -76,10 +76,12 @@ button {
 	&:hover,
 	&:active,
 	&:focus {
-		background: hsl(from var(--green) h s calc(l * .9));
+		background: hsl(from var(--green) h s calc(l * 0.9));
+
+		/* prettier-ignore */
 		border-color:
-			hsl(from var(--dark-green) h s calc(l * .9))
-			hsl(from var(--dark-green) h s calc(l * .9))
-			hsl(from var(--darker-green) h s calc(l * .9));
+			hsl(from var(--dark-green) h s calc(l * 0.9))
+			hsl(from var(--dark-green) h s calc(l * 0.9))
+			hsl(from var(--darker-green) h s calc(l * 0.9));
 	}
 }

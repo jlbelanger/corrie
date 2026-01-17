@@ -96,9 +96,10 @@ export default class Autocomplete {
 		this.filteredOptions = this.options;
 		if (search) {
 			const cleanSearch = search.toLowerCase().trim();
-			this.filteredOptions = this.filteredOptions.filter(({ label }) => (
-				label.toLowerCase().match(new RegExp(`(^|[^a-z])${cleanSearch}`))
-			));
+			// prettier-ignore
+			this.filteredOptions = this.filteredOptions.filter(
+				({ label }) => label.toLowerCase().match(new RegExp(`(^|[^a-z])${cleanSearch}`)),
+			);
 		}
 
 		// Empty list.
@@ -193,7 +194,7 @@ export default class Autocomplete {
 		const a = window.autocomplete[id];
 		if (e.key === 'ArrowDown') {
 			a.showList();
-			if (a.selectedIndex >= (a.filteredOptions.length - 1)) {
+			if (a.selectedIndex >= a.filteredOptions.length - 1) {
 				a.setSelectedIndex(0);
 			} else {
 				a.setSelectedIndex(a.selectedIndex + 1);

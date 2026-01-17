@@ -1,0 +1,3 @@
+**/*.min.*
+public/mix-manifest.json
+storage
